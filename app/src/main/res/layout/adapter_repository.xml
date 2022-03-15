@@ -31,6 +31,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNameRepository"
             app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="16sp"
             android:id="@+id/tvDescription"
             android:maxLines="2"
             android:ellipsize="end"
@@ -39,9 +40,10 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivAvatar"
             app:layout_constraintTop_toBottomOf="@id/tvDescription"
             android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
             android:id="@+id/tvCountFork"
             tools:text="8800"
             android:textSize="24sp"
@@ -68,9 +70,9 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvCountFork"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDescription"
             android:id="@+id/ivAvatar"
             android:src="@drawable/ic_circle_account"
             android:layout_gravity="center"/>
@@ -80,7 +82,6 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivAvatar"
-            app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/tvNameUser"
             tools:text="chsl"
             android:layout_gravity="center"
@@ -91,7 +92,6 @@
         <androidx.appcompat.widget.AppCompatTextView
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNameUser"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvNickName"
