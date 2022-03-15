@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/black"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RepositoryActivity">
@@ -25,6 +24,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvRepo"
+            android:background="#000"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/adapter_repository" />
@@ -37,10 +37,11 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivRefresh"
                 tools:visibility="gone"
-                app:srcCompat="@drawable/ic_refresh"
+                app:srcCompat="@drawable/ic_empty_list"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
                 android:layout_marginTop="141dp"
                 android:layout_marginStart="173dp"
                 android:layout_marginEnd="173dp"
@@ -52,7 +53,7 @@
                 tools:text="@string/message_error_response"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                android:textColor="#FFF"
+                android:textColor="#000"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:gravity="center"

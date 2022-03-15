@@ -1,19 +1,11 @@
 
 z
-Japp/src/main/java/com/chslcompany/githubrepo/core/util/ViewModelFactory.kt,2\3\23e080461d915be375858e58f631e01505f68308
-‚
-Rapp/src/main/java/com/chslcompany/githubrepo/network/model/RepositoriesResponse.kt,2\2\222b0b9e3b6d9fbbedc16a88e40efd9195c0fb32
-z
 Japp/src/main/java/com/chslcompany/githubrepo/repository/IRepositoryRepo.kt,8\8\8842c01e250373f188869e7da8f3887b4b627c46
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
-v
-Fapp/src/main/java/com/chslcompany/githubrepo/network/data/GithubApi.kt,6\3\63a7b8bf42b5d9b8e6f0b815a96a35fcf1a96c89
 x
 Happ/src/main/java/com/chslcompany/githubrepo/core/bases/BaseViewModel.kt,3\d\3d0eaec7e27cb994b4b2bc59f1597500bb2d54c5
 v
 Fapp/src/main/java/com/chslcompany/githubrepo/network/data/Requester.kt,c\9\c9947a20460d4271f238318afa062b136653f20a
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-
-Oapp/src/main/java/com/chslcompany/githubrepo/repository/RepositoriesRepoImpl.kt,1\c\1c6eefc72157d4bda44c4e9a3e45c0f86a612da9
