@@ -13,7 +13,7 @@ class RepositoryViewModel(private val repositoryImpl: RepositoriesRepoImpl) : Ba
     val repositoryLiveData: MutableLiveData<RepositoriesResponse> = MutableLiveData()
     val viewFlipperLiveData: MutableLiveData<Pair<Int, Int?>> = MutableLiveData()
 
-    fun loadRepositories() {
+    override fun loadRepositories() {
         viewModelScope.launch {
             try{
                 val response = repositoryImpl.getRepositoriesRepo()
