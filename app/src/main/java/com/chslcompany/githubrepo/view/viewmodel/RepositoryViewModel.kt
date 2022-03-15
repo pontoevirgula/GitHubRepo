@@ -1,4 +1,4 @@
-package com.chslcompany.githubrepo.viewmodel
+package com.chslcompany.githubrepo.view.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope

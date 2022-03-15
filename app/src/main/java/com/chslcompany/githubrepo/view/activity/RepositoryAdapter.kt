@@ -1,4 +1,4 @@
-package com.chslcompany.githubrepo
+package com.chslcompany.githubrepo.view.activity
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.chslcompany.githubrepo.R
 import com.chslcompany.githubrepo.databinding.AdapterRepositoryBinding
 import com.chslcompany.githubrepo.network.model.Item
 

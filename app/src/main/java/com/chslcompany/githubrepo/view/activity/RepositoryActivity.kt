@@ -1,4 +1,4 @@
-package com.chslcompany.githubrepo
+package com.chslcompany.githubrepo.view.activity
 
 import android.os.Bundle
 import android.view.Menu
@@ -7,10 +7,11 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.chslcompany.githubrepo.R
 import com.chslcompany.githubrepo.core.util.ViewModelFactory
 import com.chslcompany.githubrepo.databinding.ActivityRepositoryBinding
 import com.chslcompany.githubrepo.repository.RepositoriesRepoImpl
-import com.chslcompany.githubrepo.viewmodel.RepositoryViewModel
+import com.chslcompany.githubrepo.view.viewmodel.RepositoryViewModel
 
 class RepositoryActivity : AppCompatActivity() {
 

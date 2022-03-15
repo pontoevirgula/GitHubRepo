@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitHubRepo">
         <activity
-            android:name=".RepositoryActivity"
+            android:name="com.chslcompany.githubrepo.view.activity.RepositoryActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.GitHubRepo.NoActionBar">

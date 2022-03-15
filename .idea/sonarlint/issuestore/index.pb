@@ -7,5 +7,3 @@ x
 Happ/src/main/java/com/chslcompany/githubrepo/core/bases/BaseViewModel.kt,3\d\3d0eaec7e27cb994b4b2bc59f1597500bb2d54c5
 v
 Fapp/src/main/java/com/chslcompany/githubrepo/network/data/Requester.kt,c\9\c9947a20460d4271f238318afa062b136653f20a
-P
- app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
