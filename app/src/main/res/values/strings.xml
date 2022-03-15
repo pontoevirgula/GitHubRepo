@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GitHubRepo</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="message_empty_response">Lista de repositories vazio</string>
+    <string name="message_error_response">Sistema indisponível\nTente novamente mais tarde</string>
+</resources>
