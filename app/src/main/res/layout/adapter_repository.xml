@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="8dp"
     app:cardElevation="5dp"
     app:cardMaxElevation="7dp"
@@ -15,16 +16,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/tvNameRepository"
+            tools:text="Aqui é a nome desse repositório"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="16sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:maxLines="1"
             android:ellipsize="end"/>
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            tools:text="Aqui é a descrição desse repositório. Pode ter 2 linhas que não vai quebrar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNameRepository"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,26 +41,28 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDescription"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
             android:id="@+id/tvCountFork"
-            android:layout_marginEnd="12dp"
-            android:textSize="16sp"
+            tools:text="8800"
+            android:textSize="24sp"
             android:textStyle="bold"
-            android:textColor="@android:color/holo_orange_dark"
             android:drawablePadding="4dp"
-            app:drawableStartCompat="@android:drawable/btn_plus"
+            android:textColor="@android:color/holo_orange_dark"
+            app:drawableStartCompat="@drawable/forks"
             app:drawableTint="@android:color/holo_orange_dark" />
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             app:layout_constraintStart_toEndOf="@id/tvCountFork"
             app:layout_constraintTop_toBottomOf="@id/tvDescription"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
             android:id="@+id/tvCountStar"
-            android:textSize="16sp"
+            tools:text="41764"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="@android:color/holo_orange_dark"
-            app:drawableStartCompat="@android:drawable/btn_star"
+            app:drawableStartCompat="@drawable/ic_star"
             app:drawableTint="@android:color/holo_orange_dark"
             android:drawablePadding="4dp"/>
         <androidx.appcompat.widget.AppCompatImageView
@@ -67,6 +72,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvCountFork"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/ivAvatar"
+            android:src="@drawable/ic_circle_account"
             android:layout_gravity="center"/>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -76,6 +82,7 @@
             app:layout_constraintTop_toBottomOf="@id/ivAvatar"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/tvNameUser"
+            tools:text="chsl"
             android:layout_gravity="center"
             android:textStyle="bold"
             android:textAlignment="center"
@@ -88,6 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvNickName"
+            tools:text="company"
             android:layout_gravity="center"
             android:textSize="12sp"/>
 

@@ -64,12 +64,11 @@ RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
 
             bindingAdapter.ivAvatar.alpha = 0.3f
             bindingAdapter.ivAvatar.animate().setDuration(400).setInterpolator(AccelerateDecelerateInterpolator()).alpha(1f)
-            val drawableImageDefault = R.drawable.ic_wc
 
             Glide.with(context)
                 .load(item.owner?.avatar_url)
-                .placeholder(drawableImageDefault)
-                .error(drawableImageDefault)
+                .placeholder(R.drawable.ic_circle_account)
+                .error(R.drawable.ic_circle_account)
                 .circleCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(bindingAdapter.ivAvatar)
