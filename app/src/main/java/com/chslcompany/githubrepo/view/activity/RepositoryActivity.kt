@@ -27,7 +27,7 @@ class RepositoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setupViews()
         initViewModel()
-        initObservers()
+        setupObservers()
         fetchData()
     }
 
@@ -50,7 +50,7 @@ class RepositoryActivity : AppCompatActivity() {
         )[RepositoryViewModel::class.java]
     }
 
-    private fun initObservers() {
+    private fun setupObservers() {
         repositoryViewModel.repositoryLiveData.observe(this) { repositoryResponse ->
             binding.pbLoading.visibility = View.GONE
             repositoryAdapter.update(repositoryResponse.items)
