@@ -16,10 +16,10 @@ import com.chslcompany.githubrepo.view.viewmodel.RepositoryViewModel
 class RepositoryActivity : AppCompatActivity() {
 
     private lateinit var repositoryViewModel: RepositoryViewModel
-    private lateinit var binding : ActivityRepositoryBinding
+    private lateinit var binding: ActivityRepositoryBinding
     private var page = 1
 
-    private val repositoryAdapter : RepositoryAdapter by lazy {
+    private val repositoryAdapter: RepositoryAdapter by lazy {
         RepositoryAdapter(mutableListOf(), this)
     }
 
@@ -50,28 +50,24 @@ class RepositoryActivity : AppCompatActivity() {
         )[RepositoryViewModel::class.java]
     }
 
-    private fun initObservers(){
-        repositoryViewModel.repositoryLiveData.observe(this,
-            { repositoryResponse->
-                binding.pbLoading.visibility = View.GONE
-                repositoryAdapter.update(repositoryResponse.items)
-            }
-        )
+    private fun initObservers() {
+        repositoryViewModel.repositoryLiveData.observe(this) { repositoryResponse ->
+            binding.pbLoading.visibility = View.GONE
+            repositoryAdapter.update(repositoryResponse.items)
+        }
 
-        repositoryViewModel.viewFlipperLiveData.observe(this,
-            {
-                it?.let { viewFlipper ->
-                    binding.run {
-                        pbLoading.visibility = View.GONE
-                        viewFlipperRepository.displayedChild = viewFlipper.first
-                        viewFlipper.second?.let { errorMessageId ->
-                            rlError.visibility = View.VISIBLE
-                            tvError.text = getString(errorMessageId)
-                        }
+        repositoryViewModel.viewFlipperLiveData.observe(this) {
+            it?.let { viewFlipper ->
+                binding.run {
+                    pbLoading.visibility = View.GONE
+                    viewFlipperRepository.displayedChild = viewFlipper.first
+                    viewFlipper.second?.let { errorMessageId ->
+                        rlError.visibility = View.VISIBLE
+                        tvError.text = getString(errorMessageId)
                     }
                 }
             }
-        )
+        }
     }
 
     private fun fetchData() = repositoryViewModel.loadRepositories(page)
