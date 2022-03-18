@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.chslcompany.githubrepo.R
 import com.chslcompany.githubrepo.databinding.AdapterRepositoryBinding
-import com.chslcompany.githubrepo.network.model.Item
+import com.chslcompany.githubrepo.data.model.Item
 
 class RepositoryAdapter(private val repoList: MutableList<Item>, private val context: Context) :
 RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {

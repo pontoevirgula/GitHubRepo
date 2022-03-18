@@ -1,8 +1,7 @@
 package com.chslcompany.githubrepo.repository
 
-import com.chslcompany.githubrepo.network.model.RepositoriesResponse
-import retrofit2.Response
+import com.chslcompany.githubrepo.data.model.RepositoriesResponse
 
 interface IRepositoryRepo {
-    suspend fun getRepositoriesRepo(): RepositoriesResponse
+    suspend fun getRepositoriesRepo(page : Int): RepositoriesResponse
 }

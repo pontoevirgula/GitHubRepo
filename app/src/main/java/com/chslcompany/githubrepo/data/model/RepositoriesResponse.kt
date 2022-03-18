@@ -1,4 +1,4 @@
-package com.chslcompany.githubrepo.network.model
+package com.chslcompany.githubrepo.data.model
 
 data class RepositoriesResponse(
     var incomplete_results: Boolean = false,

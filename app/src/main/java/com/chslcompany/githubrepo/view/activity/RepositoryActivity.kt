@@ -16,8 +16,8 @@ import com.chslcompany.githubrepo.view.viewmodel.RepositoryViewModel
 class RepositoryActivity : AppCompatActivity() {
 
     private lateinit var repositoryViewModel: RepositoryViewModel
-    private var _binding: ActivityRepositoryBinding? = null
-    private val binding : ActivityRepositoryBinding? get() = _binding
+    private lateinit var binding : ActivityRepositoryBinding
+    private var page = 1
 
     private val repositoryAdapter : RepositoryAdapter by lazy {
         RepositoryAdapter(mutableListOf(), this)
@@ -32,9 +32,9 @@ class RepositoryActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
-        _binding = ActivityRepositoryBinding.inflate(layoutInflater)
+        binding = ActivityRepositoryBinding.inflate(layoutInflater)
 
-        binding?.let {
+        binding.let {
             setContentView(it.root)
             it.rvRepo.apply {
                 layoutManager = LinearLayoutManager(context)
@@ -53,7 +53,7 @@ class RepositoryActivity : AppCompatActivity() {
     private fun initObservers(){
         repositoryViewModel.repositoryLiveData.observe(this,
             { repositoryResponse->
-                binding?.pbLoading?.visibility = View.GONE
+                binding.pbLoading.visibility = View.GONE
                 repositoryAdapter.update(repositoryResponse.items)
             }
         )
@@ -61,7 +61,7 @@ class RepositoryActivity : AppCompatActivity() {
         repositoryViewModel.viewFlipperLiveData.observe(this,
             {
                 it?.let { viewFlipper ->
-                    binding?.run {
+                    binding.run {
                         pbLoading.visibility = View.GONE
                         viewFlipperRepository.displayedChild = viewFlipper.first
                         viewFlipper.second?.let { errorMessageId ->
@@ -74,7 +74,7 @@ class RepositoryActivity : AppCompatActivity() {
         )
     }
 
-    private fun fetchData()  = repositoryViewModel.loadRepositories()
+    private fun fetchData() = repositoryViewModel.loadRepositories(page)
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -92,8 +92,4 @@ class RepositoryActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 }

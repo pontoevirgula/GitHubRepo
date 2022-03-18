@@ -1,7 +1,6 @@
-package com.chslcompany.githubrepo.network.data
+package com.chslcompany.githubrepo.data.remote
 
 import com.google.gson.GsonBuilder
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
