@@ -48,30 +48,27 @@ class RepositoryActivity : AppCompatActivity() {
                 linearLayoutManager = LinearLayoutManager(context)
                 layoutManager = linearLayoutManager
                 adapter = repositoryAdapter
-            }
-        }
-    }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun setupPagination(it: ActivityRepositoryBinding) {
-        it.rvRepo.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (dy > 0) {
-                    totalItemCount = linearLayoutManager.itemCount
-                    pastVisiblesItems = linearLayoutManager.findLastVisibleItemPosition()
+                addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                        super.onScrolled(recyclerView, dx, dy)
+                        if (dy > 0) {
+                            totalItemCount = linearLayoutManager.itemCount
+                            pastVisiblesItems = linearLayoutManager.findLastVisibleItemPosition()
 
-                    if (!loading) {
-                        if (pastVisiblesItems >= totalItemCount - 1) {
-                            loading = true
-                            binding.pbLoading.visibility = View.VISIBLE
-                            page++
-                            fetchData()
+                            if (!loading) {
+                                if (pastVisiblesItems >= totalItemCount - 1) {
+                                    loading = true
+                                    binding.pbLoading.visibility = View.VISIBLE
+                                    page++
+                                    fetchData()
+                                }
+                            }
                         }
                     }
-                }
+                })
             }
-        })
+        }
     }
 
     private fun initViewModel() {
@@ -87,7 +84,6 @@ class RepositoryActivity : AppCompatActivity() {
             binding.pbLoading.visibility = View.GONE
             repositories.addAll(repositoryResponse.items)
             repositoryAdapter.submitList(repositories)
-            setupPagination(binding)
             loading = false
         }
 
