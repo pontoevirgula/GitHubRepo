@@ -15,8 +15,8 @@ import com.chslcompany.githubrepo.R
 import com.chslcompany.githubrepo.data.model.Item
 import com.chslcompany.githubrepo.databinding.AdapterRepositoryBinding
 
-class RepositoryAdapter(private val context: Context) :
-    ListAdapter<Item, RepositoryAdapter.RepositoryViewHolder>(RepositoryDiffUtil()) {
+class RepositoryAdapter() :
+    ListAdapter<Item, RepositoryAdapter.RepositoryViewHolder>(DIFF_CALLBACK) {
 
     private lateinit var bindingAdapter: AdapterRepositoryBinding
     private var lastPosition = -1
@@ -28,26 +28,21 @@ class RepositoryAdapter(private val context: Context) :
     }
 
     override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
-        holder.bind(getItem(position), context)
+        holder.bind(getItem(position))
         animation(holder.itemView, position)
     }
 
     private fun animation(view: View, position: Int) {
-        lastPosition = if (position > lastPosition) {
+        if (position > lastPosition) {
             val animation = AnimationUtils.loadAnimation(view.context, android.R.anim.slide_in_left)
             view.startAnimation(animation)
-            position
-        } else {
-            val animation =
-                AnimationUtils.loadAnimation(view.context, android.R.anim.slide_out_right)
-            view.startAnimation(animation)
-            position
+            lastPosition = position
         }
     }
 
     class RepositoryViewHolder(private val bindingAdapter: AdapterRepositoryBinding) :
         RecyclerView.ViewHolder(bindingAdapter.root) {
-        fun bind(item: Item, context: Context) {
+        fun bind(item: Item) {
             bindingAdapter.tvNameRepository.text = item.full_name
             bindingAdapter.tvDescription.text = item.description
             bindingAdapter.tvCountFork.text = item.forks_count.toString()
@@ -59,7 +54,7 @@ class RepositoryAdapter(private val context: Context) :
             bindingAdapter.ivAvatar.animate().setDuration(400)
                 .setInterpolator(AccelerateDecelerateInterpolator()).alpha(1f)
 
-            Glide.with(context)
+            Glide.with(itemView)
                 .load(item.owner?.avatar_url)
                 .placeholder(R.drawable.ic_circle_account)
                 .error(R.drawable.ic_circle_account)
@@ -69,14 +64,16 @@ class RepositoryAdapter(private val context: Context) :
         }
     }
 
-    class RepositoryDiffUtil() : DiffUtil.ItemCallback<Item>() {
-        override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
-            return oldItem === newItem
-        }
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Item>() {
+            override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
+                return oldItem.html_url == newItem.html_url
+            }
 
-        override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
-            return oldItem == newItem
+            override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
+                return oldItem == newItem
+            }
         }
-
     }
+
 }

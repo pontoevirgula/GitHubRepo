@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chslcompany.githubrepo.core.util.ViewModelFactory
+import com.chslcompany.githubrepo.data.model.Item
 import com.chslcompany.githubrepo.databinding.ActivityRepositoryBinding
 import com.chslcompany.githubrepo.repository.RepositoriesRepoImpl
 import com.chslcompany.githubrepo.view.viewmodel.RepositoryViewModel
@@ -20,12 +21,12 @@ class RepositoryActivity : AppCompatActivity() {
     private var page = 1
     private lateinit var linearLayoutManager: LinearLayoutManager
     private var pastVisiblesItems = 0
-    private var visibleItemCount = 5
     private var totalItemCount = 0
-    private var loading = true
+    private var loading = false
+    private var repositories = mutableListOf<Item>()
 
     private val repositoryAdapter: RepositoryAdapter by lazy {
-        RepositoryAdapter(this)
+        RepositoryAdapter()
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -43,6 +44,7 @@ class RepositoryActivity : AppCompatActivity() {
         binding.let {
             setContentView(it.root)
             it.rvRepo.apply {
+                setHasFixedSize(true)
                 linearLayoutManager = LinearLayoutManager(context)
                 layoutManager = linearLayoutManager
                 adapter = repositoryAdapter
@@ -55,16 +57,19 @@ class RepositoryActivity : AppCompatActivity() {
         it.rvRepo.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                totalItemCount = linearLayoutManager.itemCount;
-                pastVisiblesItems = linearLayoutManager.findLastVisibleItemPosition();
-                if (loading.not()
-                    && totalItemCount <= (pastVisiblesItems + visibleItemCount)
-                ) {
-                    loading = true
-                    binding.pbLoadMore.visibility = View.VISIBLE
-                    fetchData()
-                }
+                if (dy > 0) {
+                    totalItemCount = linearLayoutManager.itemCount
+                    pastVisiblesItems = linearLayoutManager.findLastVisibleItemPosition()
 
+                    if (!loading) {
+                        if (pastVisiblesItems >= totalItemCount - 1) {
+                            loading = true
+                            binding.pbLoading.visibility = View.VISIBLE
+                            page++
+                            fetchData()
+                        }
+                    }
+                }
             }
         })
     }
@@ -79,9 +84,9 @@ class RepositoryActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
     private fun setupObservers() {
         repositoryViewModel.repositoryLiveData.observe(this) { repositoryResponse ->
-            binding.pbLoadMore.visibility = View.GONE
             binding.pbLoading.visibility = View.GONE
-            repositoryAdapter.submitList(repositoryResponse.items)
+            repositories.addAll(repositoryResponse.items)
+            repositoryAdapter.submitList(repositories)
             setupPagination(binding)
             loading = false
         }
