@@ -3,7 +3,6 @@ package com.chslcompany.githubrepo.view.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.chslcompany.githubrepo.R
 import com.chslcompany.githubrepo.data.model.RepositoriesResponse
 import com.chslcompany.githubrepo.repository.RepositoriesRepoImpl
 import kotlinx.coroutines.launch
@@ -11,28 +10,20 @@ import kotlinx.coroutines.launch
 class RepositoryViewModel(private val repositoryImpl: RepositoriesRepoImpl) : ViewModel() {
 
     val repositoryLiveData: MutableLiveData<RepositoriesResponse> = MutableLiveData()
-    val viewFlipperLiveData: MutableLiveData<Pair<Int, Int?>> = MutableLiveData()
 
-    fun loadRepositories(page : Int) {
+    fun loadRepositories(page: Int) {
         viewModelScope.launch {
-            try{
+            try {
                 val response = repositoryImpl.getRepositoriesRepo(page)
-                if (response.items.isNullOrEmpty()){
-                    viewFlipperLiveData.value =
-                        Pair(VIEW_FLIPPER_ERROR, R.string.message_empty_response)
+                if (response.items.isNullOrEmpty()) {
+                    //TODO tratamento de lista vazia
                 } else {
-                    repositoryLiveData.postValue(response)
-                    viewFlipperLiveData.postValue(Pair(VIEW_FLIPPER_REPOSITORIES, null))
+                    repositoryLiveData.value = response
                 }
-            }catch (e : Exception){
-                viewFlipperLiveData.value =
-                    Pair(VIEW_FLIPPER_ERROR, R.string.message_error_response)
+            } catch (e: Exception) {
+                //TODO tratamento de erro
             }
         }
     }
 
-    companion object {
-        private const val VIEW_FLIPPER_REPOSITORIES = 1
-        private const val VIEW_FLIPPER_ERROR = 2
-    }
 }

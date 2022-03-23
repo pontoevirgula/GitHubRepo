@@ -1,60 +1,52 @@
 package com.chslcompany.githubrepo.view.activity
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AnimationUtils
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.chslcompany.githubrepo.R
-import com.chslcompany.githubrepo.databinding.AdapterRepositoryBinding
 import com.chslcompany.githubrepo.data.model.Item
+import com.chslcompany.githubrepo.databinding.AdapterRepositoryBinding
 
-class RepositoryAdapter(private val repoList: MutableList<Item>, private val context: Context) :
-RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
+class RepositoryAdapter(private val context: Context) :
+    ListAdapter<Item, RepositoryAdapter.RepositoryViewHolder>(RepositoryDiffUtil()) {
 
-    private lateinit var bindingAdapter : AdapterRepositoryBinding
+    private lateinit var bindingAdapter: AdapterRepositoryBinding
     private var lastPosition = -1
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
-        bindingAdapter = AdapterRepositoryBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        bindingAdapter =
+            AdapterRepositoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RepositoryViewHolder(bindingAdapter)
     }
 
     override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
-        holder.bind(repoList[position], context)
-        animation(holder.itemView,position)
+        holder.bind(getItem(position), context)
+        animation(holder.itemView, position)
     }
 
-    override fun getItemCount() = repoList.size
-
-    private fun animation(view: View, position: Int){
-        lastPosition = if (position > lastPosition){
-            val animation = AnimationUtils.loadAnimation(view.context,android.R.anim.slide_in_left)
+    private fun animation(view: View, position: Int) {
+        lastPosition = if (position > lastPosition) {
+            val animation = AnimationUtils.loadAnimation(view.context, android.R.anim.slide_in_left)
             view.startAnimation(animation)
             position
-        } else{
-            val animation = AnimationUtils.loadAnimation(view.context,android.R.anim.slide_out_right)
+        } else {
+            val animation =
+                AnimationUtils.loadAnimation(view.context, android.R.anim.slide_out_right)
             view.startAnimation(animation)
             position
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun update(repositories: List<Item>) {
-        if (repositories.isNullOrEmpty().not()) {
-            repoList.clear()
-            repoList.addAll(repositories)
-            notifyDataSetChanged()
-        }
-    }
-
-    class RepositoryViewHolder(private val bindingAdapter : AdapterRepositoryBinding)
-        : RecyclerView.ViewHolder(bindingAdapter.root) {
+    class RepositoryViewHolder(private val bindingAdapter: AdapterRepositoryBinding) :
+        RecyclerView.ViewHolder(bindingAdapter.root) {
         fun bind(item: Item, context: Context) {
             bindingAdapter.tvNameRepository.text = item.full_name
             bindingAdapter.tvDescription.text = item.description
@@ -64,7 +56,8 @@ RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
             bindingAdapter.tvNickName.text = item.name
 
             bindingAdapter.ivAvatar.alpha = 0.3f
-            bindingAdapter.ivAvatar.animate().setDuration(400).setInterpolator(AccelerateDecelerateInterpolator()).alpha(1f)
+            bindingAdapter.ivAvatar.animate().setDuration(400)
+                .setInterpolator(AccelerateDecelerateInterpolator()).alpha(1f)
 
             Glide.with(context)
                 .load(item.owner?.avatar_url)
@@ -73,6 +66,16 @@ RecyclerView.Adapter<RepositoryAdapter.RepositoryViewHolder>() {
                 .circleCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(bindingAdapter.ivAvatar)
+        }
+    }
+
+    class RepositoryDiffUtil() : DiffUtil.ItemCallback<Item>() {
+        override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
+            return oldItem === newItem
+        }
+
+        override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
+            return oldItem == newItem
         }
 
     }
