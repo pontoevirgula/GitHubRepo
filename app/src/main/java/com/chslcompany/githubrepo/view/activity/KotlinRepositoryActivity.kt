@@ -56,7 +56,7 @@ class KotlinRepositoryActivity : BaseActivity() {
 
                             if (loading.not() && pastVisibleItems >= totalItemCount - 1) {
                                 loading = true
-                                binding.pbLoading.visibility = View.VISIBLE
+                                binding.includeLoading.rlLoading.visibility = View.VISIBLE
                                 page++
                                 fetchData()
                             }
@@ -71,24 +71,28 @@ class KotlinRepositoryActivity : BaseActivity() {
         kotlinRepositoryViewModel.kotlinRepositoriesLiveData.observeResource(
             this,
             onSuccess = { items ->
+                binding.includeError.rlError.visibility = View.GONE
+                binding.includeLoading.rlLoading.visibility = View.GONE
+
                 if (items.isNullOrEmpty().not()) {
-                    binding.pbLoading.visibility = View.GONE
+                    binding.includeLoading.rlLoading.visibility = View.GONE
                     repositories.addAll(items)
                     kotlinRepositoryAdapter.submitList(repositories)
                     loading = false
+                    binding.includeEmptyList.rlEmptyList.visibility = View.GONE
                 } else {
-                    //TODO lista vazia
-                    binding.pbLoading.visibility = View.GONE
-                    binding.recyclerView.visibility = View.GONE
+                    binding.includeEmptyList.rlEmptyList.visibility = View.VISIBLE
                 }
             },
             onError = {
-                //TODO tratamento de erro
-                binding.pbLoading.visibility = View.GONE
-                binding.recyclerView.visibility = View.GONE
+                binding.includeLoading.rlLoading.visibility = View.GONE
+                binding.includeEmptyList.rlEmptyList.visibility = View.GONE
+                binding.includeError.rlError.visibility = View.VISIBLE
             },
             onLoading = {
-                binding.pbLoading.visibility = View.VISIBLE
+                binding.includeLoading.rlLoading.visibility = View.VISIBLE
+                binding.includeEmptyList.rlEmptyList.visibility = View.GONE
+                binding.includeError.rlError.visibility = View.GONE
             }
         )
     }

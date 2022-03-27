@@ -6,11 +6,16 @@
         <entry key="..\:/MyProjects/GitHubRepo/app/src/main/res/drawable/forks.xml" value="0.20833333333333334" />
         <entry key="..\:/MyProjects/GitHubRepo/app/src/main/res/drawable/ic_circle_account.xml" value="0.20833333333333334" />
         <entry key="..\:/MyProjects/GitHubRepo/app/src/main/res/drawable/ic_empty_list.xml" value="0.20833333333333334" />
+        <entry key="..\:/MyProjects/GitHubRepo/app/src/main/res/drawable/ic_empty_list2.xml" value="0.20833333333333334" />
+        <entry key="..\:/MyProjects/GitHubRepo/app/src/main/res/drawable/ic_error.xml" value="0.20833333333333334" />
         <entry key="..\:/MyProjects/GitHubRepo/app/src/main/res/drawable/ic_star.xml" value="0.20833333333333334" />
         <entry key="..\:/MyProjects/GitHubRepo/app/src/main/res/drawable/ic_wc.xml" value="0.20833333333333334" />
         <entry key="..\:/MyProjects/GitHubRepo/app/src/main/res/layout/activity_repository.xml" value="0.15" />
         <entry key="..\:/MyProjects/GitHubRepo/app/src/main/res/layout/adapter_repository.xml" value="0.25" />
         <entry key="..\:/MyProjects/GitHubRepo/app/src/main/res/layout/content_main.xml" value="0.1" />
+        <entry key="..\:/MyProjects/GitHubRepo/app/src/main/res/layout/include_empty_list.xml" value="0.18931159420289856" />
+        <entry key="..\:/MyProjects/GitHubRepo/app/src/main/res/layout/include_error.xml" value="0.18931159420289856" />
+        <entry key="..\:/MyProjects/GitHubRepo/app/src/main/res/layout/include_loading.xml" value="0.18931159420289856" />
         <entry key="..\:/MyProjects/GitHubRepo/app/src/main/res/menu/menu_main.xml" value="0.1" />
       </map>
     </option>

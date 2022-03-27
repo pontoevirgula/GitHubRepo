@@ -21,8 +21,6 @@ class KotlinRepositoryViewModel(private val repositoryImpl: KotlinRepositoriesIm
                     success(responses)
                 } catch (e: Exception) {
                     error(e)
-                }finally {
-                    loading(false)
                 }
             }
         }

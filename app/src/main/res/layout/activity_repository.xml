@@ -9,18 +9,9 @@
     android:layout_height="match_parent"
     tools:context=".view.activity.KotlinRepositoryActivity">
 
-    <RelativeLayout
-        android:id="@+id/pbLoading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ProgressBar
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="visible"
-            tools:visibility="visible" />
-    </RelativeLayout>
+    <include
+        android:id="@+id/include_loading"
+        layout="@layout/include_loading"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -29,41 +20,12 @@
         android:background="@color/black"
         tools:listitem="@layout/adapter_repository" />
 
-    <RelativeLayout
-        android:id="@+id/rlError"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+    <include
+        android:id="@+id/include_empty_list"
+        layout="@layout/include_empty_list"/>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivRefresh"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="173dp"
-            android:layout_marginTop="141dp"
-            android:layout_marginEnd="173dp"
-            android:padding="8dp"
-            app:srcCompat="@drawable/ic_empty_list"
-            tools:visibility="gone" />
+    <include
+        android:id="@+id/include_error"
+        layout="@layout/include_error"/>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="@string/message_error_response" />
-    </RelativeLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>
