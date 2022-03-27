@@ -1,6 +1,5 @@
 package com.chslcompany.githubrepo.view.activity
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,19 +14,19 @@ import com.chslcompany.githubrepo.R
 import com.chslcompany.githubrepo.data.model.Item
 import com.chslcompany.githubrepo.databinding.AdapterRepositoryBinding
 
-class RepositoryAdapter() :
-    ListAdapter<Item, RepositoryAdapter.RepositoryViewHolder>(DIFF_CALLBACK) {
+class KotlinRepositoryAdapter() :
+    ListAdapter<Item, KotlinRepositoryAdapter.KotlinRepositoryViewHolder>(DIFF_CALLBACK) {
 
     private lateinit var bindingAdapter: AdapterRepositoryBinding
     private var lastPosition = -1
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KotlinRepositoryViewHolder {
         bindingAdapter =
             AdapterRepositoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return RepositoryViewHolder(bindingAdapter)
+        return KotlinRepositoryViewHolder(bindingAdapter)
     }
 
-    override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: KotlinRepositoryViewHolder, position: Int) {
         holder.bind(getItem(position))
         animation(holder.itemView, position)
     }
@@ -40,7 +39,7 @@ class RepositoryAdapter() :
         }
     }
 
-    class RepositoryViewHolder(private val bindingAdapter: AdapterRepositoryBinding) :
+    class KotlinRepositoryViewHolder(private val bindingAdapter: AdapterRepositoryBinding) :
         RecyclerView.ViewHolder(bindingAdapter.root) {
         fun bind(item: Item) {
             bindingAdapter.tvNameRepository.text = item.full_name

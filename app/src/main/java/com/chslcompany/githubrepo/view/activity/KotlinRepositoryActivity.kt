@@ -10,11 +10,11 @@ import com.chslcompany.githubrepo.core.bases.BaseActivity
 import com.chslcompany.githubrepo.core.util.observeResource
 import com.chslcompany.githubrepo.data.model.Item
 import com.chslcompany.githubrepo.databinding.ActivityRepositoryBinding
-import com.chslcompany.githubrepo.view.viewmodel.RepositoryViewModel
+import com.chslcompany.githubrepo.view.viewmodel.KotlinRepositoryViewModel
 
-class RepositoryActivity : BaseActivity() {
+class KotlinRepositoryActivity : BaseActivity() {
 
-    private lateinit var repositoryViewModel: RepositoryViewModel
+    private lateinit var kotlinRepositoryViewModel: KotlinRepositoryViewModel
     private lateinit var binding: ActivityRepositoryBinding
     private lateinit var linearLayoutManager: LinearLayoutManager
     private var page = 1
@@ -23,8 +23,8 @@ class RepositoryActivity : BaseActivity() {
     private var loading = false
     private var repositories = mutableListOf<Item>()
 
-    private val repositoryAdapter: RepositoryAdapter by lazy {
-        RepositoryAdapter()
+    private val kotlinRepositoryAdapter: KotlinRepositoryAdapter by lazy {
+        KotlinRepositoryAdapter()
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -32,7 +32,7 @@ class RepositoryActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRepositoryBinding.inflate(layoutInflater)
         setupViews()
-        repositoryViewModel = initViewModelProvider()
+        kotlinRepositoryViewModel = initViewModelProvider()
         setupObservers()
         fetchData()
     }
@@ -41,11 +41,11 @@ class RepositoryActivity : BaseActivity() {
     private fun setupViews() {
         binding.let {
             setContentView(it.root)
-            it.rvRepo.apply {
+            it.recyclerView.apply {
                 setHasFixedSize(true)
                 linearLayoutManager = LinearLayoutManager(context)
                 layoutManager = linearLayoutManager
-                adapter = repositoryAdapter
+                adapter = kotlinRepositoryAdapter
 
                 addOnScrollListener(object : RecyclerView.OnScrollListener() {
                     override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -68,22 +68,24 @@ class RepositoryActivity : BaseActivity() {
     }
 
     private fun setupObservers() {
-        repositoryViewModel.kotlinRepositories.observeResource(
+        kotlinRepositoryViewModel.kotlinRepositories.observeResource(
             this,
             onSuccess = { items ->
                 if (items.isNullOrEmpty().not()) {
                     binding.pbLoading.visibility = View.GONE
                     repositories.addAll(items)
-                    repositoryAdapter.submitList(repositories)
+                    kotlinRepositoryAdapter.submitList(repositories)
                     loading = false
                 } else {
                     //TODO lista vazia
                     binding.pbLoading.visibility = View.GONE
-                    binding.rvRepo.visibility = View.GONE
+                    binding.recyclerView.visibility = View.GONE
                 }
             },
             onError = {
                 //TODO tratamento de erro
+                binding.pbLoading.visibility = View.GONE
+                binding.recyclerView.visibility = View.GONE
             },
             onLoading = {
                 binding.pbLoading.visibility = View.VISIBLE
@@ -91,7 +93,7 @@ class RepositoryActivity : BaseActivity() {
         )
     }
 
-    private fun fetchData() = repositoryViewModel.loadRepositories(page)
+    private fun fetchData() = kotlinRepositoryViewModel.loadRepositories(page)
 
 
 }
