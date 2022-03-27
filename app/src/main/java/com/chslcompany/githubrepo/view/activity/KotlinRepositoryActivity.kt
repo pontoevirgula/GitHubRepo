@@ -68,7 +68,7 @@ class KotlinRepositoryActivity : BaseActivity() {
     }
 
     private fun setupObservers() {
-        kotlinRepositoryViewModel.kotlinRepositories.observeResource(
+        kotlinRepositoryViewModel.kotlinRepositoriesLiveData.observeResource(
             this,
             onSuccess = { items ->
                 if (items.isNullOrEmpty().not()) {

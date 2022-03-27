@@ -10,11 +10,11 @@ import kotlinx.coroutines.launch
 
 class KotlinRepositoryViewModel(private val repositoryImpl: KotlinRepositoriesImpl) : BaseViewModel() {
 
-    val kotlinRepositories = MutableLiveData<Resource<List<Item>>>()
+    val kotlinRepositoriesLiveData = MutableLiveData<Resource<List<Item>>>()
 
     fun loadRepositories(page: Int) {
         viewModelScope.launch {
-            with(kotlinRepositories) {
+            with(kotlinRepositoriesLiveData) {
                 loading(true)
                 try {
                     val responses = repositoryImpl.getKotlinRepositories(page).items
