@@ -9,5 +9,3 @@ u
 Eapp/src/main/java/com/chslcompany/githubrepo/data/remote/GithubApi.kt,1\4\14e6a5b5439db56bf0090a293534ca81041383e2
 
 Oapp/src/main/java/com/chslcompany/githubrepo/data/model/RepositoriesResponse.kt,c\a\ca316e0afa10ab16878b01f47a66dafbc5668ebb
-‚
-Rapp/src/main/java/com/chslcompany/githubrepo/view/viewmodel/RepositoryViewModel.kt,f\4\f47da3fedf1ed53d7f3fc56a0e50748a609bb4a8

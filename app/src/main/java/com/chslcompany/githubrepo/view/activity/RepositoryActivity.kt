@@ -7,6 +7,7 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chslcompany.githubrepo.core.bases.BaseActivity
+import com.chslcompany.githubrepo.core.util.observeResource
 import com.chslcompany.githubrepo.data.model.Item
 import com.chslcompany.githubrepo.databinding.ActivityRepositoryBinding
 import com.chslcompany.githubrepo.view.viewmodel.RepositoryViewModel
@@ -54,10 +55,10 @@ class RepositoryActivity : BaseActivity() {
                             pastVisibleItems = linearLayoutManager.findLastVisibleItemPosition()
 
                             if (loading.not() && pastVisibleItems >= totalItemCount - 1) {
-                                    loading = true
-                                    binding.pbLoading.visibility = View.VISIBLE
-                                    page++
-                                    fetchData()
+                                loading = true
+                                binding.pbLoading.visibility = View.VISIBLE
+                                page++
+                                fetchData()
                             }
                         }
                     }
@@ -65,16 +66,29 @@ class RepositoryActivity : BaseActivity() {
             }
         }
     }
-    @RequiresApi(Build.VERSION_CODES.M)
-    private fun setupObservers() {
-        repositoryViewModel.repositoryLiveData.observe(this) { repositoryResponse ->
-            binding.pbLoading.visibility = View.GONE
-            repositories.addAll(repositoryResponse.items)
-            repositoryAdapter.submitList(repositories)
-            loading = false
-        }
 
-        //TODO tratamento de erro
+    private fun setupObservers() {
+        repositoryViewModel.kotlinRepositories.observeResource(
+            this,
+            onSuccess = { items ->
+                if (items.isNullOrEmpty().not()) {
+                    binding.pbLoading.visibility = View.GONE
+                    repositories.addAll(items)
+                    repositoryAdapter.submitList(repositories)
+                    loading = false
+                } else {
+                    //TODO lista vazia
+                    binding.pbLoading.visibility = View.GONE
+                    binding.rvRepo.visibility = View.GONE
+                }
+            },
+            onError = {
+                //TODO tratamento de erro
+            },
+            onLoading = {
+                binding.pbLoading.visibility = View.VISIBLE
+            }
+        )
     }
 
     private fun fetchData() = repositoryViewModel.loadRepositories(page)
