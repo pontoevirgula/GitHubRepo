@@ -88,6 +88,9 @@ class KotlinRepositoryActivity : BaseActivity() {
                 binding.includeLoading.rlLoading.visibility = View.GONE
                 binding.includeEmptyList.rlEmptyList.visibility = View.GONE
                 binding.includeError.rlError.visibility = View.VISIBLE
+                binding.includeError.tvError.setOnClickListener {
+                    fetchData()
+                }
             },
             onLoading = {
                 binding.includeLoading.rlLoading.visibility = View.VISIBLE
