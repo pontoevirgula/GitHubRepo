@@ -1,9 +1,7 @@
 package com.chslcompany.githubrepo.view.activity
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chslcompany.githubrepo.core.bases.BaseActivity
@@ -27,7 +25,6 @@ class KotlinRepositoryActivity : BaseActivity() {
         KotlinRepositoryAdapter()
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRepositoryBinding.inflate(layoutInflater)
@@ -37,7 +34,6 @@ class KotlinRepositoryActivity : BaseActivity() {
         fetchData()
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     private fun setupViews() {
         binding.let {
             setContentView(it.root)
@@ -47,22 +43,7 @@ class KotlinRepositoryActivity : BaseActivity() {
                 layoutManager = linearLayoutManager
                 adapter = kotlinRepositoryAdapter
 
-                addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                        super.onScrolled(recyclerView, dx, dy)
-                        if (dy > 0) {
-                            totalItemCount = linearLayoutManager.itemCount
-                            pastVisibleItems = linearLayoutManager.findLastVisibleItemPosition()
-
-                            if (loading.not() && pastVisibleItems >= totalItemCount - 1) {
-                                loading = true
-                                binding.includeLoading.rlLoading.visibility = View.VISIBLE
-                                page++
-                                fetchData()
-                            }
-                        }
-                    }
-                })
+                setupScrollListener()
             }
         }
     }
@@ -101,6 +82,25 @@ class KotlinRepositoryActivity : BaseActivity() {
     }
 
     private fun fetchData() = kotlinRepositoryViewModel.loadRepositories(page)
+
+    private fun RecyclerView.setupScrollListener() {
+        addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0) {
+                    totalItemCount = linearLayoutManager.itemCount
+                    pastVisibleItems = linearLayoutManager.findLastVisibleItemPosition()
+
+                    if (loading.not() && pastVisibleItems >= totalItemCount - 1) {
+                        loading = true
+                        binding.includeLoading.rlLoading.visibility = View.VISIBLE
+                        page++
+                        fetchData()
+                    }
+                }
+            }
+        })
+    }
 
 
 }
