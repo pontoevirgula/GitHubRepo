@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.chslcompany.githubrepo.R
 import com.chslcompany.githubrepo.core.bases.BaseActivity
+import com.chslcompany.githubrepo.core.util.NetworkChangeReceiver.Companion.networkChangeUnregisterReceiver
 import com.chslcompany.githubrepo.core.util.observeResource
 import com.chslcompany.githubrepo.data.model.Item
 import com.chslcompany.githubrepo.databinding.ActivityRepositoryBinding
 import com.chslcompany.githubrepo.view.viewmodel.KotlinRepositoryViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class KotlinRepositoryActivity : BaseActivity() {
 
@@ -32,6 +35,12 @@ class KotlinRepositoryActivity : BaseActivity() {
         kotlinRepositoryViewModel = initViewModelProvider()
         setupObservers()
         fetchData()
+    }
+
+    override fun onConnectionChange(isConnected: Boolean) {
+        if(isConnected.not()){
+            Snackbar.make(findViewById(android.R.id.content), getString(R.string.no_connection), Snackbar.LENGTH_LONG).show()
+        }
     }
 
     private fun setupViews() {
@@ -69,9 +78,7 @@ class KotlinRepositoryActivity : BaseActivity() {
                 binding.includeLoading.rlLoading.visibility = View.GONE
                 binding.includeEmptyList.rlEmptyList.visibility = View.GONE
                 binding.includeError.rlError.visibility = View.VISIBLE
-                binding.includeError.tvError.setOnClickListener {
-                    fetchData()
-                }
+                binding.includeError.tvError.setOnClickListener { fetchData() }
             },
             onLoading = {
                 binding.includeLoading.rlLoading.visibility = View.VISIBLE
@@ -100,6 +107,11 @@ class KotlinRepositoryActivity : BaseActivity() {
                 }
             }
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        networkChangeUnregisterReceiver(this)
     }
 
 

@@ -4,4 +4,5 @@
 
     <string name="message_empty_response">Lista vazia\n Tente novamente mais tarde</string>
     <string name="message_error_response">ERRO!\nClique aqui e tente novamente</string>
+    <string name="no_connection">Conexão indisponível</string>
 </resources>

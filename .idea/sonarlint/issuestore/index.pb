@@ -11,3 +11,15 @@ Uapp/src/main/java/com/chslcompany/githubrepo/view/activity/KotlinRepositoryAdap
 Oapp/src/main/java/com/chslcompany/githubrepo/data/model/RepositoriesResponse.kt,c\a\ca316e0afa10ab16878b01f47a66dafbc5668ebb
 u
 Eapp/src/main/java/com/chslcompany/githubrepo/data/remote/GithubApi.kt,1\4\14e6a5b5439db56bf0090a293534ca81041383e2
+u
+Eapp/src/main/java/com/chslcompany/githubrepo/data/remote/Requester.kt,f\0\f0a99239296c7809bfe185feb9c57b49e5cb1f0b
+Å
+Qapp/src/main/java/com/chslcompany/githubrepo/repository/KotlinRepositoriesImpl.kt,a\9\a911204d224527950725677a114c0c15492b795f
+|
+Lapp/src/main/java/com/chslcompany/githubrepo/repository/IKotlinRepository.kt,b\2\b200d219d7ff0a05fe798e0cc1eca6212e1d6569
+|
+Lapp/src/main/java/com/chslcompany/githubrepo/core/util/ExtensionFunctions.kt,c\c\cc09962a777f201f80151ade21d47480ea4e7b9c
+r
+Bapp/src/main/java/com/chslcompany/githubrepo/core/util/Resource.kt,1\4\14f9826f6e4dd98bed956b6ba161789626a2ed9a
+x
+Happ/src/main/java/com/chslcompany/githubrepo/core/bases/BaseViewModel.kt,3\d\3d0eaec7e27cb994b4b2bc59f1597500bb2d54c5
