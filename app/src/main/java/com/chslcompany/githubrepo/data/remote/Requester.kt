@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 object Requester {
 
     private const val URL = "https://api.github.com/"
-    private const val maxSecondsToRequest: Long = 5
+    private const val maxSecondsToRequest: Long = 30
 
     private val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 

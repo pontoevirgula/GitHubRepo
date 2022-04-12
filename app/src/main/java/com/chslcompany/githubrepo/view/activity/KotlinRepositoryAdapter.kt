@@ -14,7 +14,7 @@ import com.chslcompany.githubrepo.R
 import com.chslcompany.githubrepo.data.model.Item
 import com.chslcompany.githubrepo.databinding.AdapterRepositoryBinding
 
-class KotlinRepositoryAdapter() :
+class KotlinRepositoryAdapter(private val items : MutableList<Item> ) :
     ListAdapter<Item, KotlinRepositoryAdapter.KotlinRepositoryViewHolder>(DIFF_CALLBACK) {
 
     private lateinit var bindingAdapter: AdapterRepositoryBinding

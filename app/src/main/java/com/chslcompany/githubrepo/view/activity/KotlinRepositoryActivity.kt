@@ -2,18 +2,18 @@ package com.chslcompany.githubrepo.view.activity
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.chslcompany.githubrepo.R
-import com.chslcompany.githubrepo.core.bases.BaseActivity
-import com.chslcompany.githubrepo.core.util.NetworkChangeReceiver.Companion.networkChangeUnregisterReceiver
+import com.chslcompany.githubrepo.core.di.DependencyInjector
+import com.chslcompany.githubrepo.core.util.ViewModelFactory
 import com.chslcompany.githubrepo.core.util.observeResource
 import com.chslcompany.githubrepo.data.model.Item
 import com.chslcompany.githubrepo.databinding.ActivityRepositoryBinding
 import com.chslcompany.githubrepo.view.viewmodel.KotlinRepositoryViewModel
-import com.google.android.material.snackbar.Snackbar
 
-class KotlinRepositoryActivity : BaseActivity() {
+class KotlinRepositoryActivity : AppCompatActivity() {
 
     private lateinit var kotlinRepositoryViewModel: KotlinRepositoryViewModel
     private lateinit var binding: ActivityRepositoryBinding
@@ -25,7 +25,7 @@ class KotlinRepositoryActivity : BaseActivity() {
     private var repositories = mutableListOf<Item>()
 
     private val kotlinRepositoryAdapter: KotlinRepositoryAdapter by lazy {
-        KotlinRepositoryAdapter()
+        KotlinRepositoryAdapter(mutableListOf())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +35,6 @@ class KotlinRepositoryActivity : BaseActivity() {
         kotlinRepositoryViewModel = initViewModelProvider()
         setupObservers()
         fetchData()
-    }
-
-    override fun onConnectionChange(isConnected: Boolean) {
-        if(isConnected.not()){
-            Snackbar.make(findViewById(android.R.id.content), getString(R.string.no_connection), Snackbar.LENGTH_LONG).show()
-        }
     }
 
     private fun setupViews() {
@@ -62,28 +56,32 @@ class KotlinRepositoryActivity : BaseActivity() {
             this,
             onSuccess = { items ->
                 binding.includeError.rlError.visibility = View.GONE
-                binding.includeLoading.rlLoading.visibility = View.GONE
+                binding.includeLoading.loadingShimmer.visibility = View.GONE
 
                 if (items.isNullOrEmpty().not()) {
-                    binding.includeLoading.rlLoading.visibility = View.GONE
+                    binding.includeLoading.loadingShimmer.visibility = View.GONE
                     repositories.addAll(items)
                     kotlinRepositoryAdapter.submitList(repositories)
                     loading = false
                     binding.includeEmptyList.rlEmptyList.visibility = View.GONE
+                    binding.recyclerView.visibility = View.VISIBLE
                 } else {
                     binding.includeEmptyList.rlEmptyList.visibility = View.VISIBLE
+                    binding.recyclerView.visibility = View.GONE
                 }
             },
             onError = {
-                binding.includeLoading.rlLoading.visibility = View.GONE
+                binding.includeLoading.loadingShimmer.visibility = View.GONE
                 binding.includeEmptyList.rlEmptyList.visibility = View.GONE
                 binding.includeError.rlError.visibility = View.VISIBLE
+                binding.recyclerView.visibility = View.GONE
                 binding.includeError.tvError.setOnClickListener { fetchData() }
             },
             onLoading = {
-                binding.includeLoading.rlLoading.visibility = View.VISIBLE
+                binding.includeLoading.loadingShimmer.visibility = View.VISIBLE
                 binding.includeEmptyList.rlEmptyList.visibility = View.GONE
                 binding.includeError.rlError.visibility = View.GONE
+                binding.recyclerView.visibility = View.GONE
             }
         )
     }
@@ -98,9 +96,9 @@ class KotlinRepositoryActivity : BaseActivity() {
                     totalItemCount = linearLayoutManager.itemCount
                     pastVisibleItems = linearLayoutManager.findLastVisibleItemPosition()
 
-                    if (loading.not() && pastVisibleItems >= totalItemCount - 1) {
+                    if (loading.not() && pastVisibleItems >= (totalItemCount - 1)) {
                         loading = true
-                        binding.includeLoading.rlLoading.visibility = View.VISIBLE
+                        binding.includeLoading.loadingShimmer.visibility = View.VISIBLE
                         page++
                         fetchData()
                     }
@@ -109,10 +107,14 @@ class KotlinRepositoryActivity : BaseActivity() {
         })
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        networkChangeUnregisterReceiver(this)
-    }
+    private fun initViewModelProvider() = ViewModelProvider(
+        this,
+        ViewModelFactory(DependencyInjector.providerRepository())
+    )[KotlinRepositoryViewModel::class.java]
 
+    override fun onResume() {
+        super.onResume()
+        loading = false
+    }
 
 }

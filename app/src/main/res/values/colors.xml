@@ -8,4 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#008577</color>
+    <color name="darkNavyBlue">#000c12</color>
+    <color name="navy">#002537</color>
+    <color name="pineGreen">#061c27</color>
 </resources>
