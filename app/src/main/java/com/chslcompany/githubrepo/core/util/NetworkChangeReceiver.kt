@@ -30,11 +30,11 @@ class NetworkChangeReceiver : BroadcastReceiver() {
                 }
             }
         } else {
-            cm?.run {
-                cm.activeNetworkInfo?.run {
-                    if (type == ConnectivityManager.TYPE_WIFI) {
+            cm?.apply {
+                activeNetworkInfo?.also {
+                    if (it.type == ConnectivityManager.TYPE_WIFI) {
                         result = true
-                    } else if (type == ConnectivityManager.TYPE_MOBILE) {
+                    } else if (it.type == ConnectivityManager.TYPE_MOBILE) {
                         result = true
                     }
                 }
