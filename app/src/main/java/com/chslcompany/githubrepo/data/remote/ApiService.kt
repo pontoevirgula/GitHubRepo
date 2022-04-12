@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object Requester {
+object ApiService {
 
     private const val URL = "https://api.github.com/"
     private const val maxSecondsToRequest: Long = 30
@@ -36,7 +36,5 @@ object Requester {
         .client(httpClient)
         .build()
 
-    fun getService(): GithubApi = retrofit.create(
-        GithubApi::class.java
-    )
+    fun getService(): GithubApi = retrofit.create(GithubApi::class.java)
 }

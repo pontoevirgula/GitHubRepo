@@ -7,5 +7,3 @@ r
 Bapp/src/main/java/com/chslcompany/githubrepo/core/util/Resource.kt,1\4\14f9826f6e4dd98bed956b6ba161789626a2ed9a
 |
 Lapp/src/main/java/com/chslcompany/githubrepo/core/util/ExtensionFunctions.kt,c\c\cc09962a777f201f80151ade21d47480ea4e7b9c
-u
-Eapp/src/main/java/com/chslcompany/githubrepo/data/remote/GithubApi.kt,1\4\14e6a5b5439db56bf0090a293534ca81041383e2
