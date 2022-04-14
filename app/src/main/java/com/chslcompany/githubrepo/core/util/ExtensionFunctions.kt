@@ -1,5 +1,6 @@
 package com.chslcompany.githubrepo.core.util
 
+import android.view.View
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -17,4 +18,8 @@ fun <T> LiveData<Resource<T>>.observeResource(
             is Resource.Loading -> onLoading?.invoke(resource.isLoading)
         }
     })
+}
+
+fun View.isVisibleOrGone(show: Boolean) {
+    visibility = if (show) View.VISIBLE else View.GONE
 }
