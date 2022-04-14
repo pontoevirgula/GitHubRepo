@@ -1,14 +1,13 @@
 package com.chslcompany.githubrepo.view.activity
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chslcompany.githubrepo.core.di.DependencyInjector
 import com.chslcompany.githubrepo.core.util.ViewModelFactory
-import com.chslcompany.githubrepo.core.util.isVisibleOrGone
+import com.chslcompany.githubrepo.core.util.isVisible
 import com.chslcompany.githubrepo.core.util.observeResource
 import com.chslcompany.githubrepo.data.model.Item
 import com.chslcompany.githubrepo.databinding.ActivityRepositoryBinding
@@ -56,33 +55,33 @@ class KotlinRepositoryActivity : AppCompatActivity() {
         kotlinRepositoryViewModel.kotlinRepositoriesLiveData.observeResource(
             this,
             onSuccess = { items ->
-                binding.includeError.rlError.isVisibleOrGone(false)
-                binding.includeLoading.loadingShimmer.isVisibleOrGone(false)
+                binding.includeError.rlError.isVisible(false)
+                binding.includeLoading.loadingShimmer.isVisible(false)
 
                 if (items.isNullOrEmpty().not()) {
-                    binding.includeLoading.loadingShimmer.isVisibleOrGone(false)
+                    binding.includeLoading.loadingShimmer.isVisible(false)
                     repositories.addAll(items)
                     kotlinRepositoryAdapter.submitList(repositories)
                     loading = false
-                    binding.includeEmptyList.rlEmptyList.isVisibleOrGone(false)
-                    binding.recyclerView.isVisibleOrGone(true)
+                    binding.includeEmptyList.rlEmptyList.isVisible(false)
+                    binding.recyclerView.isVisible(true)
                 } else {
-                    binding.includeEmptyList.rlEmptyList.isVisibleOrGone(true)
-                    binding.recyclerView.isVisibleOrGone(false)
+                    binding.includeEmptyList.rlEmptyList.isVisible(true)
+                    binding.recyclerView.isVisible(false)
                 }
             },
             onError = {
-                binding.includeLoading.loadingShimmer.isVisibleOrGone(false)
-                binding.includeEmptyList.rlEmptyList.isVisibleOrGone(false)
-                binding.includeError.rlError.isVisibleOrGone(true)
-                binding.recyclerView.isVisibleOrGone(false)
+                binding.includeLoading.loadingShimmer.isVisible(false)
+                binding.includeEmptyList.rlEmptyList.isVisible(false)
+                binding.includeError.rlError.isVisible(true)
+                binding.recyclerView.isVisible(false)
                 binding.includeError.tvError.setOnClickListener { fetchData() }
             },
             onLoading = {
-                binding.includeLoading.loadingShimmer.isVisibleOrGone(true)
-                binding.includeEmptyList.rlEmptyList.isVisibleOrGone(false)
-                binding.includeError.rlError.isVisibleOrGone(false)
-                binding.recyclerView.isVisibleOrGone(false)
+                binding.includeLoading.loadingShimmer.isVisible(true)
+                binding.includeEmptyList.rlEmptyList.isVisible(false)
+                binding.includeError.rlError.isVisible(false)
+                binding.recyclerView.isVisible(false)
             }
         )
     }
@@ -99,7 +98,7 @@ class KotlinRepositoryActivity : AppCompatActivity() {
 
                     if (loading.not() && pastVisibleItems >= (totalItemCount - 1)) {
                         loading = true
-                        binding.includeLoading.loadingShimmer.isVisibleOrGone(true)
+                        binding.includeLoading.loadingShimmer.isVisible(true)
                         page++
                         fetchData()
                     }

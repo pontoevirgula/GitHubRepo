@@ -20,6 +20,6 @@ fun <T> LiveData<Resource<T>>.observeResource(
     })
 }
 
-fun View.isVisibleOrGone(show: Boolean) {
+fun View.isVisible(show: Boolean) {
     visibility = if (show) View.VISIBLE else View.GONE
 }
