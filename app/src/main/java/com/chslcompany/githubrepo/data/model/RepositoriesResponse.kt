@@ -1,5 +1,8 @@
 package com.chslcompany.githubrepo.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 data class RepositoriesResponse(
     var incomplete_results: Boolean = false,
     var items: List<Item> = listOf(),
@@ -95,6 +98,7 @@ data class License(
     var url: String? = ""
 )
 
+@Parcelize
 data class Owner(
     var avatar_url: String? = "",
     var events_url: String? = "",
@@ -114,4 +118,4 @@ data class Owner(
     var subscriptions_url: String? = "",
     var type: String? = "",
     var url: String? = ""
-)
+):Parcelable
