@@ -1,5 +1,6 @@
 package com.chslcompany.githubrepo.view.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.chslcompany.githubrepo.core.bases.BaseViewModel
@@ -10,11 +11,12 @@ import kotlinx.coroutines.launch
 
 class KotlinRepositoryViewModel(private val repository: IKotlinRepository) : BaseViewModel() {
 
-    val kotlinRepositoriesLiveData = MutableLiveData<Resource<List<Item>>>()
+    private val _kotlinRepositoriesLiveData = MutableLiveData<Resource<List<Item>>>()
+    val kotlinRepositoriesLiveData : LiveData<Resource<List<Item>>> = _kotlinRepositoriesLiveData
 
     fun loadRepositories(page: Int) {
         viewModelScope.launch {
-            with(kotlinRepositoriesLiveData) {
+            with(_kotlinRepositoriesLiveData) {
                 loading(true)
                 try {
                     val responses = repository.getKotlinRepositories(page).items
