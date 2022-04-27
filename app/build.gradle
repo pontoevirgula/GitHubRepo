@@ -87,6 +87,8 @@ dependencies {
 
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 
+    implementation 'com.google.android.material:material:1.7.0-alpha01'
+
     //region TEST
     implementation "androidx.test:core:1.4.0"
     testImplementation "org.hamcrest:hamcrest-all:1.3"
