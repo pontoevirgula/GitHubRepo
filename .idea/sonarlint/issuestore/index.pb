@@ -19,11 +19,6 @@ r
 Bapp/src/main/java/com/chslcompany/githubrepo/core/util/Resource.kt,1\4\14f9826f6e4dd98bed956b6ba161789626a2ed9a
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
->
-app/.gitignore,5\1\51e1c5d383dfaa35e0e7e5873a0a99355a86880f
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 v
 Fapp/src/main/java/com/chslcompany/githubrepo/data/remote/ApiService.kt,2\b\2bf1a71504de8c7b396dfe7d27017bbda268a018
 „
