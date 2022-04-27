@@ -8,7 +8,7 @@ object DependencyInjector {
 
     fun providerRepository(): IKotlinRepository = KotlinRepositoriesImpl(providerService())
 
-    private fun providerService() = ApiService
+    private fun providerService() = ApiService.getService()
 
     //private fun provideMockRepository() : IKotlinRepository =
 

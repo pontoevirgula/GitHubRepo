@@ -86,7 +86,7 @@ class KotlinRepositoryActivity : AppCompatActivity() {
         )
     }
 
-    private fun fetchData() = kotlinRepositoryViewModel.loadRepositories(page)
+    private fun fetchData() = kotlinRepositoryViewModel.loadRepositories(page=page)
 
     private fun RecyclerView.setupScrollListener() {
         addOnScrollListener(object : RecyclerView.OnScrollListener() {

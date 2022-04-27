@@ -2,6 +2,7 @@ package com.chslcompany.githubrepo.repository
 
 import com.chslcompany.githubrepo.data.model.RepositoriesResponse
 import com.chslcompany.githubrepo.data.remote.ApiService
+import com.chslcompany.githubrepo.data.remote.GithubApi
 import com.google.common.truth.Truth
 import com.google.gson.Gson
 import junit.framework.TestCase
@@ -14,7 +15,7 @@ import org.mockito.Mockito.*
 @ExperimentalCoroutinesApi
 class KotlinRepositoriesImplTest : TestCase() {
     private val testCoroutineDispatcher = TestCoroutineDispatcher()
-    private val api = mock(ApiService::class.java)
+    private val api = mock(GithubApi::class.java)
 
     @Test
     fun `test response repository`() = testCoroutineDispatcher.runBlockingTest {
@@ -23,10 +24,10 @@ class KotlinRepositoriesImplTest : TestCase() {
 
         testCoroutineDispatcher.pauseDispatcher()
 
-        doReturn(mockRepositoryResponse).`when`(api).getService().fetchKotlinRepositories(anyString(),
+        doReturn(mockRepositoryResponse).`when`(api).fetchKotlinRepositories(anyString(),
             anyString(), anyInt())
 
-        repository.getKotlinRepositories(anyInt()).let {
+        repository.getKotlinRepositories(anyString(), anyString(), anyInt()).let {
             Truth.assertThat(it).isEqualTo(mockRepositoryResponse)
         }
 

@@ -14,12 +14,12 @@ class KotlinRepositoryViewModel(private val repository: IKotlinRepository) : Bas
     private val _kotlinRepositoriesLiveData = MutableLiveData<Resource<List<Item>>>()
     val kotlinRepositoriesLiveData : LiveData<Resource<List<Item>>> = _kotlinRepositoriesLiveData
 
-    fun loadRepositories(page: Int) {
+    fun loadRepositories(language: String = "language:kotlin", sort: String = "stars", page: Int) {
         viewModelScope.launch {
             with(_kotlinRepositoriesLiveData) {
                 loading(true)
                 try {
-                    val responses = repository.getKotlinRepositories(page).items
+                    val responses = repository.getKotlinRepositories(language, sort, page).items
                     success(responses)
                 } catch (e: Exception) {
                     error(e)
