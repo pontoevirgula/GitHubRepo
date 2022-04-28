@@ -1,4 +1,4 @@
-package com.chslcompany.githubrepo.data.model
+package com.chslcompany.githubrepo.data.remote.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

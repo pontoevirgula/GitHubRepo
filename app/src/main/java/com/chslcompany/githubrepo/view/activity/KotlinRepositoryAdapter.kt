@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.chslcompany.githubrepo.R
-import com.chslcompany.githubrepo.data.model.Item
+import com.chslcompany.githubrepo.data.domain.ItemDomain
 import com.chslcompany.githubrepo.databinding.AdapterRepositoryBinding
 
-class KotlinRepositoryAdapter(private val items : MutableList<Item> ) :
-    ListAdapter<Item, KotlinRepositoryAdapter.KotlinRepositoryViewHolder>(DIFF_CALLBACK) {
+class KotlinRepositoryAdapter() :
+    ListAdapter<ItemDomain, KotlinRepositoryAdapter.KotlinRepositoryViewHolder>(DIFF_CALLBACK) {
 
     private lateinit var bindingAdapter: AdapterRepositoryBinding
     private var lastPosition = -1
@@ -41,20 +41,20 @@ class KotlinRepositoryAdapter(private val items : MutableList<Item> ) :
 
     class KotlinRepositoryViewHolder(private val bindingAdapter: AdapterRepositoryBinding) :
         RecyclerView.ViewHolder(bindingAdapter.root) {
-        fun bind(item: Item) {
-            bindingAdapter.tvNameRepository.text = item.full_name
-            bindingAdapter.tvDescription.text = item.description
-            bindingAdapter.tvCountFork.text = item.forks_count.toString()
-            bindingAdapter.tvCountStar.text = item.stargazers_count.toString()
-            bindingAdapter.tvNameUser.text = item.owner?.login
-            bindingAdapter.tvNickName.text = item.name
+        fun bind(itemDomain: ItemDomain) {
+            bindingAdapter.tvNameRepository.text = itemDomain.full_name_domain
+            bindingAdapter.tvDescription.text = itemDomain.description_domain
+            bindingAdapter.tvCountFork.text = itemDomain.forks_count_domain.toString()
+            bindingAdapter.tvCountStar.text = itemDomain.stargazers_count_domain.toString()
+            bindingAdapter.tvNameUser.text = itemDomain.login_domain
+            bindingAdapter.tvNickName.text = itemDomain.name_domain
 
             bindingAdapter.ivAvatar.alpha = 0.3f
             bindingAdapter.ivAvatar.animate().setDuration(400)
                 .setInterpolator(AccelerateDecelerateInterpolator()).alpha(1f)
 
             Glide.with(itemView)
-                .load(item.owner?.avatar_url)
+                .load(itemDomain.avatar_url_domain)
                 .placeholder(R.drawable.ic_circle_account)
                 .error(R.drawable.ic_circle_account)
                 .circleCrop()
@@ -64,12 +64,12 @@ class KotlinRepositoryAdapter(private val items : MutableList<Item> ) :
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Item>() {
-            override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
-                return oldItem.html_url == newItem.html_url
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ItemDomain>() {
+            override fun areItemsTheSame(oldItem: ItemDomain, newItem: ItemDomain): Boolean {
+                return oldItem.html_url_domain == newItem.html_url_domain
             }
 
-            override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
+            override fun areContentsTheSame(oldItem: ItemDomain, newItem: ItemDomain): Boolean {
                 return oldItem == newItem
             }
         }

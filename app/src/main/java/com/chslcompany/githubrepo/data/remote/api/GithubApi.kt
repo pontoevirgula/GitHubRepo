@@ -1,6 +1,6 @@
-package com.chslcompany.githubrepo.data.remote
+package com.chslcompany.githubrepo.data.remote.api
 
-import com.chslcompany.githubrepo.data.model.RepositoriesResponse
+import com.chslcompany.githubrepo.data.remote.model.RepositoriesResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

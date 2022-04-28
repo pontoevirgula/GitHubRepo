@@ -1,4 +1,4 @@
-package com.chslcompany.githubrepo.data.remote
+package com.chslcompany.githubrepo.data.remote.api
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient

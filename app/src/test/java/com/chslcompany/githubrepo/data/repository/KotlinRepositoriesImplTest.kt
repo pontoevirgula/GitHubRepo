@@ -1,8 +1,7 @@
-package com.chslcompany.githubrepo.repository
+package com.chslcompany.githubrepo.data.repository
 
-import com.chslcompany.githubrepo.data.model.RepositoriesResponse
-import com.chslcompany.githubrepo.data.remote.ApiService
-import com.chslcompany.githubrepo.data.remote.GithubApi
+import com.chslcompany.githubrepo.data.remote.model.RepositoriesResponse
+import com.chslcompany.githubrepo.data.remote.api.GithubApi
 import com.google.common.truth.Truth
 import com.google.gson.Gson
 import junit.framework.TestCase

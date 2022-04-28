@@ -9,7 +9,7 @@ import com.chslcompany.githubrepo.core.di.DependencyInjector
 import com.chslcompany.githubrepo.core.util.ViewModelFactory
 import com.chslcompany.githubrepo.core.util.isVisible
 import com.chslcompany.githubrepo.core.util.observeResource
-import com.chslcompany.githubrepo.data.model.Item
+import com.chslcompany.githubrepo.data.domain.ItemDomain
 import com.chslcompany.githubrepo.databinding.ActivityRepositoryBinding
 import com.chslcompany.githubrepo.view.viewmodel.KotlinRepositoryViewModel
 
@@ -22,10 +22,10 @@ class KotlinRepositoryActivity : AppCompatActivity() {
     private var pastVisibleItems = 0
     private var totalItemCount = 0
     private var loading = false
-    private var repositories = mutableListOf<Item>()
+    private var repositories = mutableListOf<ItemDomain>()
 
     private val kotlinRepositoryAdapter: KotlinRepositoryAdapter by lazy {
-        KotlinRepositoryAdapter(mutableListOf())
+        KotlinRepositoryAdapter()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,7 +109,7 @@ class KotlinRepositoryActivity : AppCompatActivity() {
 
     private fun initViewModelProvider() = ViewModelProvider(
         this,
-        ViewModelFactory(DependencyInjector.providerRepository())
+        ViewModelFactory(DependencyInjector.providerUseCase())
     )[KotlinRepositoryViewModel::class.java]
 
     override fun onResume() {
