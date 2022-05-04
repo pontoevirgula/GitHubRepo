@@ -1,4 +1,4 @@
-package com.chslcompany.githubrepo.view.viewmodel
+package com.chslcompany.githubrepo.view.repositories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,7 @@ import com.chslcompany.githubrepo.data.domain.ItemDomain
 import com.chslcompany.githubrepo.data.domain.ItemUseCase
 import kotlinx.coroutines.launch
 
-class KotlinRepositoryViewModel(private val itemUseCase: ItemUseCase) : BaseViewModel() {
+class KotlinRepositoryViewModel (private val itemUseCase: ItemUseCase) : BaseViewModel() {
 
     private val _kotlinRepositoriesLiveData = MutableLiveData<Resource<List<ItemDomain>>>()
     val kotlinRepositoriesLiveData : LiveData<Resource<List<ItemDomain>>> = _kotlinRepositoriesLiveData

@@ -3,7 +3,7 @@ package com.chslcompany.githubrepo.core.util
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.chslcompany.githubrepo.data.domain.ItemUseCase
-import com.chslcompany.githubrepo.view.viewmodel.KotlinRepositoryViewModel
+import com.chslcompany.githubrepo.view.repositories.KotlinRepositoryViewModel
 
 class ViewModelFactory(private val useCase: ItemUseCase) :
     ViewModelProvider.Factory {

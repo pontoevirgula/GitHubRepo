@@ -1,21 +1,18 @@
-package com.chslcompany.githubrepo.view.activity
+package com.chslcompany.githubrepo.view.repositories
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.chslcompany.githubrepo.core.di.DependencyInjector
-import com.chslcompany.githubrepo.core.util.ViewModelFactory
 import com.chslcompany.githubrepo.core.util.isVisible
 import com.chslcompany.githubrepo.core.util.observeResource
 import com.chslcompany.githubrepo.data.domain.ItemDomain
 import com.chslcompany.githubrepo.databinding.ActivityRepositoryBinding
-import com.chslcompany.githubrepo.view.viewmodel.KotlinRepositoryViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class KotlinRepositoryActivity : AppCompatActivity() {
 
-    private lateinit var kotlinRepositoryViewModel: KotlinRepositoryViewModel
+    private val viewModel by viewModel<KotlinRepositoryViewModel>()
     private lateinit var binding: ActivityRepositoryBinding
     private lateinit var linearLayoutManager: LinearLayoutManager
     private var page = 1
@@ -32,7 +29,6 @@ class KotlinRepositoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRepositoryBinding.inflate(layoutInflater)
         setupViews()
-        kotlinRepositoryViewModel = initViewModelProvider()
         setupObservers()
         fetchData()
     }
@@ -52,7 +48,7 @@ class KotlinRepositoryActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
-        kotlinRepositoryViewModel.kotlinRepositoriesLiveData.observeResource(
+        viewModel.kotlinRepositoriesLiveData.observeResource(
             this,
             onSuccess = { items ->
                 binding.includeError.rlError.isVisible(false)
@@ -86,7 +82,7 @@ class KotlinRepositoryActivity : AppCompatActivity() {
         )
     }
 
-    private fun fetchData() = kotlinRepositoryViewModel.loadRepositories(page=page)
+    private fun fetchData() = viewModel.loadRepositories(page=page)
 
     private fun RecyclerView.setupScrollListener() {
         addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -106,11 +102,6 @@ class KotlinRepositoryActivity : AppCompatActivity() {
             }
         })
     }
-
-    private fun initViewModelProvider() = ViewModelProvider(
-        this,
-        ViewModelFactory(DependencyInjector.providerUseCase())
-    )[KotlinRepositoryViewModel::class.java]
 
     override fun onResume() {
         super.onResume()

@@ -1,4 +1,4 @@
-package com.chslcompany.githubrepo.view.activity
+package com.chslcompany.githubrepo.view.repositories
 
 import android.view.LayoutInflater
 import android.view.View

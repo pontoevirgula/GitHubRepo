@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.chslcompany.githubrepo.core.util.Resource
 import com.chslcompany.githubrepo.data.domain.ItemDomain
 import com.chslcompany.githubrepo.data.domain.ItemUseCaseImpl
-import com.chslcompany.githubrepo.view.viewmodel.KotlinRepositoryViewModel
+import com.chslcompany.githubrepo.view.repositories.KotlinRepositoryViewModel
 import com.google.common.truth.Truth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
