@@ -14,7 +14,7 @@ import com.chslcompany.githubrepo.R
 import com.chslcompany.githubrepo.data.domain.ItemDomain
 import com.chslcompany.githubrepo.databinding.AdapterRepositoryBinding
 
-class KotlinRepositoryAdapter() :
+class KotlinRepositoryAdapter(private val onClick : ((itemDomain : ItemDomain) -> Unit)) :
     ListAdapter<ItemDomain, KotlinRepositoryAdapter.KotlinRepositoryViewHolder>(DIFF_CALLBACK) {
 
     private lateinit var bindingAdapter: AdapterRepositoryBinding
@@ -23,7 +23,7 @@ class KotlinRepositoryAdapter() :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KotlinRepositoryViewHolder {
         bindingAdapter =
             AdapterRepositoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return KotlinRepositoryViewHolder(bindingAdapter)
+        return KotlinRepositoryViewHolder(bindingAdapter, onClick)
     }
 
     override fun onBindViewHolder(holder: KotlinRepositoryViewHolder, position: Int) {
@@ -39,8 +39,10 @@ class KotlinRepositoryAdapter() :
         }
     }
 
-    class KotlinRepositoryViewHolder(private val bindingAdapter: AdapterRepositoryBinding) :
+    class KotlinRepositoryViewHolder(private val bindingAdapter: AdapterRepositoryBinding,
+          private val onClick : (itemDomain : ItemDomain)-> Unit ) :
         RecyclerView.ViewHolder(bindingAdapter.root) {
+
         fun bind(itemDomain: ItemDomain) {
             bindingAdapter.tvNameRepository.text = itemDomain.full_name_domain
             bindingAdapter.tvDescription.text = itemDomain.description_domain
@@ -60,6 +62,10 @@ class KotlinRepositoryAdapter() :
                 .circleCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(bindingAdapter.ivAvatar)
+
+            itemView.setOnClickListener {
+                onClick.invoke(itemDomain)
+            }
         }
     }
 

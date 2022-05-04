@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GitHubRepo">
         <activity
-            android:name=".SplashActivity"
+            android:name=".view.repositories.RepositoryWebViewActivity"
             android:theme="@style/Theme.GitHubRepo.NoActionBar"
-            android:exported="true">
+            android:exported="true" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.GitHubRepo.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

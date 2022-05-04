@@ -5,136 +5,98 @@
     android:layout_height="match_parent"
     android:background="@color/darkNavyBlue">
 
-    <View
-        android:id="@+id/banner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@color/pineGreen"
-        app:layout_constraintDimensionRatio="16:16"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/tab_1"
-        android:layout_width="50dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="36dp"
-        android:background="@color/navy"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/banner" />
-
-    <View
-        android:id="@+id/tab_2"
-        android:layout_width="90dp"
-        android:layout_height="20sp"
-        android:layout_marginStart="25dp"
-        android:background="@color/navy"
-        app:layout_constraintStart_toEndOf="@id/tab_1"
-        app:layout_constraintTop_toTopOf="@id/tab_1" />
-
-    <View
-        android:id="@+id/tab_3"
-        android:layout_width="90dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="25dp"
-        android:background="@color/navy"
-        app:layout_constraintStart_toEndOf="@id/tab_2"
-        app:layout_constraintTop_toTopOf="@id/tab_1" />
-
-    <View
-        android:id="@+id/search"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="25dp"
-        android:background="@color/navy"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tab_3"
-        app:layout_constraintTop_toTopOf="@id/tab_1" />
-
-    <View
-        android:id="@+id/banner_title"
-        android:layout_width="138dp"
-        android:layout_height="16dp"
-        android:layout_marginBottom="50dp"
-        android:background="@color/navy"
-        app:layout_constraintBottom_toBottomOf="@id/banner"
-        app:layout_constraintStart_toStartOf="@id/tab_1"
-        app:layout_constraintTop_toTopOf="@id/banner" />
-
-    <View
-        android:id="@+id/banner_title2"
-        android:layout_width="100dp"
-        android:layout_height="12dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/navy"
-        app:layout_constraintStart_toStartOf="@id/banner_title"
-        app:layout_constraintTop_toBottomOf="@id/banner_title" />
-
-    <View
-        android:id="@+id/banner_title3"
-        android:layout_width="138dp"
-        android:layout_height="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/navy"
-        app:layout_constraintStart_toStartOf="@id/banner_title"
-        app:layout_constraintTop_toBottomOf="@id/banner_title2" />
-
-    <View
-        android:id="@+id/indicator"
-        android:layout_width="41dp"
-        android:layout_height="7dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/navy"
-        app:layout_constraintBottom_toBottomOf="@id/banner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <View
-        android:id="@+id/category"
-        android:layout_width="110dp"
-        android:layout_height="12dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/navy"
-        app:layout_constraintStart_toStartOf="@id/tab_1"
-        app:layout_constraintTop_toBottomOf="@id/banner" />
-
-    <View
-        android:id="@+id/see_all"
-        android:layout_width="55dp"
-        android:layout_height="12dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/navy"
-        app:layout_constraintBottom_toBottomOf="@id/category"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/category" />
-
-    <LinearLayout
-        android:id="@+id/linear1"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@id/category"
-        app:layout_constraintTop_toBottomOf="@id/category">
+        android:layout_margin="20dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:id="@+id/banner"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/pineGreen"
+            app:layout_constraintDimensionRatio="20:12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <View
+            android:id="@+id/category"
+            android:layout_width="110dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/navy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/category2"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/navy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/category" />
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/navy"
-            app:cardCornerRadius="16dp" />
+            app:cardCornerRadius="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/category2" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view2"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/navy"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintStart_toEndOf="@id/card_view"
+            app:layout_constraintTop_toBottomOf="@id/category2" />
 
         <View
             android:id="@+id/name_offer"
-            android:layout_width="50dp"
-            android:layout_height="15dp"
-            android:layout_gravity="center"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
-            android:background="@color/navy" />
+            android:background="@color/navy"
+            app:layout_constraintStart_toEndOf="@id/card_view2"
+            app:layout_constraintTop_toTopOf="@id/card_view2" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view3"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/navy"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintStart_toEndOf="@id/name_offer"
+            app:layout_constraintTop_toBottomOf="@id/category2" />
+
+        <View
+            android:id="@+id/name_offer2"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/navy"
+            app:layout_constraintStart_toEndOf="@id/card_view3"
+            app:layout_constraintTop_toTopOf="@id/card_view2" />
 
         <View
             android:id="@+id/value1"
@@ -157,125 +119,268 @@
             app:layout_constraintEnd_toEndOf="@id/card_view"
             app:layout_constraintStart_toStartOf="@id/card_view"
             app:layout_constraintTop_toBottomOf="@id/card_view" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear2"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toEndOf="@id/linear1"
-        app:layout_constraintTop_toBottomOf="@id/category">
+        android:layout_margin="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/cl1">
+
+        <View
+            android:id="@+id/banner_cl2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/pineGreen"
+            app:layout_constraintDimensionRatio="20:12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/category_cl2"
+            android:layout_width="110dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/navy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/category2_cl2"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/navy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/category_cl2" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_cl2"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/navy"
-            app:cardCornerRadius="16dp" />
+            app:cardCornerRadius="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/category2_cl2" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view2_cl2"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/navy"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintStart_toEndOf="@id/card_view_cl2"
+            app:layout_constraintTop_toBottomOf="@id/category2_cl2" />
 
         <View
-            android:layout_width="60dp"
-            android:layout_height="15dp"
-            android:layout_gravity="center"
+            android:id="@+id/name_offer_cl2"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
             android:background="@color/navy"
-            app:layout_constraintEnd_toEndOf="@id/card_view"
-            app:layout_constraintStart_toStartOf="@id/card_view"
-            app:layout_constraintTop_toBottomOf="@id/card_view" />
+            app:layout_constraintStart_toEndOf="@id/card_view2_cl2"
+            app:layout_constraintTop_toTopOf="@id/card_view2_cl2" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view3_cl2"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/navy"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintStart_toEndOf="@id/name_offer_cl2"
+            app:layout_constraintTop_toBottomOf="@id/category2_cl2" />
 
         <View
+            android:id="@+id/name_offer2_cl2"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/navy"
+            app:layout_constraintStart_toEndOf="@id/card_view3_cl2"
+            app:layout_constraintTop_toTopOf="@id/card_view2_cl2" />
+
+        <View
+            android:id="@+id/value1_cl2"
             android:layout_width="90dp"
             android:layout_height="14dp"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:background="@color/navy"
-            app:layout_constraintEnd_toEndOf="@id/card_view"
-            app:layout_constraintStart_toStartOf="@id/card_view"
-            app:layout_constraintTop_toBottomOf="@id/card_view" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toEndOf="@id/linear2"
-        app:layout_constraintTop_toBottomOf="@id/category">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/navy"
-            app:cardCornerRadius="16dp" />
+            app:layout_constraintEnd_toEndOf="@id/card_view_cl2"
+            app:layout_constraintStart_toStartOf="@id/card_view_cl2"
+            app:layout_constraintTop_toBottomOf="@id/card_view_cl2" />
 
         <View
-            android:layout_width="60dp"
-            android:layout_height="15dp"
+            android:id="@+id/value2_cl2"
+            android:layout_width="70dp"
+            android:layout_height="20dp"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:background="@color/navy"
-            app:layout_constraintEnd_toEndOf="@id/card_view"
-            app:layout_constraintStart_toStartOf="@id/card_view"
-            app:layout_constraintTop_toBottomOf="@id/card_view" />
+            app:layout_constraintEnd_toEndOf="@id/card_view_cl2"
+            app:layout_constraintStart_toStartOf="@id/card_view_cl2"
+            app:layout_constraintTop_toBottomOf="@id/card_view_cl2" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/cl2">
 
         <View
+            android:id="@+id/banner_cl3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/pineGreen"
+            app:layout_constraintDimensionRatio="20:12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/category_cl3"
+            android:layout_width="110dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/navy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/category2_cl3"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/navy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/category_cl3" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view_cl3"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/navy"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/category2_cl3" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view2_cl3"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/navy"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintStart_toEndOf="@id/card_view_cl3"
+            app:layout_constraintTop_toBottomOf="@id/category2_cl3" />
+
+        <View
+            android:id="@+id/name_offer_cl3"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/navy"
+            app:layout_constraintStart_toEndOf="@id/card_view2_cl3"
+            app:layout_constraintTop_toTopOf="@id/card_view2_cl3" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_view3_cl3"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/navy"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintStart_toEndOf="@id/name_offer_cl3"
+            app:layout_constraintTop_toBottomOf="@id/category2_cl3" />
+
+        <View
+            android:id="@+id/name_offer2_cl3"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/navy"
+            app:layout_constraintStart_toEndOf="@id/card_view3_cl3"
+            app:layout_constraintTop_toTopOf="@id/card_view2_cl3" />
+
+        <View
+            android:id="@+id/value1_cl3"
             android:layout_width="90dp"
             android:layout_height="14dp"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:background="@color/navy"
-            app:layout_constraintEnd_toEndOf="@id/card_view"
-            app:layout_constraintStart_toStartOf="@id/card_view"
-            app:layout_constraintTop_toBottomOf="@id/card_view" />
+            app:layout_constraintEnd_toEndOf="@id/card_view_cl3"
+            app:layout_constraintStart_toStartOf="@id/card_view_cl3"
+            app:layout_constraintTop_toBottomOf="@id/card_view_cl3" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toEndOf="@id/linear3"
-        app:layout_constraintTop_toBottomOf="@id/category">
-
-        <androidx.cardview.widget.CardView
+        <View
+            android:id="@+id/value2_cl3"
             android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="@color/navy"
-            app:cardCornerRadius="16dp" />
-
-        <View
-            android:layout_width="60dp"
-            android:layout_height="15dp"
+            android:layout_height="20dp"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:background="@color/navy"
-            app:layout_constraintEnd_toEndOf="@id/card_view"
-            app:layout_constraintStart_toStartOf="@id/card_view"
-            app:layout_constraintTop_toBottomOf="@id/card_view" />
+            app:layout_constraintEnd_toEndOf="@id/card_view_cl3"
+            app:layout_constraintStart_toStartOf="@id/card_view_cl3"
+            app:layout_constraintTop_toBottomOf="@id/card_view_cl3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/cl3">
 
         <View
-            android:layout_width="90dp"
-            android:layout_height="14dp"
-            android:layout_gravity="center"
+            android:id="@+id/banner_cl4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/pineGreen"
+            app:layout_constraintDimensionRatio="20:12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/category_cl4"
+            android:layout_width="110dp"
+            android:layout_height="12dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:background="@color/navy"
-            app:layout_constraintEnd_toEndOf="@id/card_view"
-            app:layout_constraintStart_toStartOf="@id/card_view"
-            app:layout_constraintTop_toBottomOf="@id/card_view" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
-
+        <View
+            android:id="@+id/category2_cl4"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/navy"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/category_cl4" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

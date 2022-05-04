@@ -1,5 +1,6 @@
 package com.chslcompany.githubrepo.view.repositories
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,8 +22,10 @@ class KotlinRepositoryActivity : AppCompatActivity() {
     private var loading = false
     private var repositories = mutableListOf<ItemDomain>()
 
-    private val kotlinRepositoryAdapter: KotlinRepositoryAdapter by lazy {
-        KotlinRepositoryAdapter()
+    private val kotlinRepositoryAdapter = KotlinRepositoryAdapter {
+        val intent = Intent(this, RepositoryWebViewActivity::class.java)
+        intent.putExtra(URL, it.html_url_domain)
+        startActivity(intent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,7 +85,7 @@ class KotlinRepositoryActivity : AppCompatActivity() {
         )
     }
 
-    private fun fetchData() = viewModel.loadRepositories(page=page)
+    private fun fetchData() = viewModel.loadRepositories(page = page)
 
     private fun RecyclerView.setupScrollListener() {
         addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -106,6 +109,10 @@ class KotlinRepositoryActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         loading = false
+    }
+
+    companion object {
+        const val URL = "URL"
     }
 
 }

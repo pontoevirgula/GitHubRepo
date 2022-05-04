@@ -5,4 +5,6 @@
     <string name="message_empty_response">Lista vazia\n Tente novamente mais tarde</string>
     <string name="message_error_response">ERRO!\nClique aqui e tente novamente</string>
     <string name="no_connection">Conexão indisponível</string>
+    <string name="try_again">Clique na imagem\npra tentar novamente</string>
+    <string name="fail_to_get_data">Erro ao buscar dados</string>
 </resources>
